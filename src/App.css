@@ -31,8 +31,16 @@ body {
   padding: 24px 8px 18px;
   border-bottom: 1px solid var(--borde);
 }
+
+.logo {
+  display: block;
+  width: min(200px, 55%);
+  height: auto;
+  margin: 0 auto;
+}
+
 .kicker { margin: 0; font-size: 11px; letter-spacing: 3px; color: #8a6a4b; }
-.cabecera h1 { margin: 6px 0 0; font-size: 32px; font-weight: 600; letter-spacing: 2px; }
+.cabecera h1 { margin: 14px 0 0; font-size: 32px; font-weight: 600; letter-spacing: 2px; }
 .lema { margin: 6px 0 0; font-size: 14px; color: var(--gris); }
 
 /* Categorias: botones de 62px, imposibles de fallar con el dedo */

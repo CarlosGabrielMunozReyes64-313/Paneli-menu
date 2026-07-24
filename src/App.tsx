@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from './firebase'
 import { optimizar } from './cloudinary'
+import PaneliLogo from './asets/logo/paneli_completo_negro.png'
 import './App.css'
 
 // El tipo de un plato tal como vive en Firestore.
@@ -83,9 +84,8 @@ export default function App() {
   return (
     <div className="pagina">
       <header className="cabecera">
-        <p className="kicker">RESTAURANTE</p>
-        <h1>PANELI</h1>
-        <p className="lema">Comida casera al aire libre</p>
+        <img className="logo" src={PaneliLogo} alt="Paneli" />
+        <h1>MENÚ</h1>
       </header>
 
       <nav className="categorias">
