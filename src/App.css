@@ -1,5 +1,10 @@
 :root {
   --crema: #fbf8f3;
+  /* Estas tres las reescribe App.tsx con lo que publique la APK.
+     Los valores de aqui son el respaldo si aun no hay documento. */
+  --fondo-color: #fbf8f3;
+  --acento: #6b4a2f;
+  --escala: 1.12;
   --marron: #6b4a2f;
   --rojo: #a62b23;
   --tinta: #1c1917;
@@ -13,13 +18,27 @@
 
 body {
   margin: 0;
-  background: var(--crema);
+  background: var(--fondo-color);
   color: var(--tinta);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
+/* Fondo subido desde la APK: fija, detras de todo, no captura toques.
+   La opacidad la pone App.tsx en linea (tope 35%). */
+.fondo-imagen {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
 .pagina {
+  position: relative;
+  z-index: 1;
   max-width: 480px;
   margin: 0 auto;
   padding: 0 14px 40px;
@@ -40,31 +59,33 @@ body {
 }
 
 .kicker { margin: 0; font-size: 11px; letter-spacing: 3px; color: #8a6a4b; }
-.cabecera h1 { margin: 14px 0 0; font-size: 32px; font-weight: 600; letter-spacing: 2px; }
+.cabecera h1 { margin: 14px 0 0; font-size: calc(32px * var(--escala)); font-weight: 600; letter-spacing: 2px; }
 .lema { margin: 6px 0 0; font-size: 14px; color: var(--gris); }
 
 /* Categorias: botones de 62px, imposibles de fallar con el dedo */
-.categorias { display: flex; gap: 8px; padding: 16px 0; }
+/* Con 4 categorias se parten en dos filas antes que apretarse. */
+.categorias { display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 0; }
 .cat {
-  flex: 1;
+  flex: 1 1 calc(50% - 4px);
+  min-width: 0;
   height: 62px;
   border-radius: 12px;
   border: 1.5px solid #c9bba9;
   background: #fff;
   color: #3a332c;
-  font-size: 18px;
+  font-size: calc(17px * var(--escala));
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
 }
-.cat.activa { background: var(--marron); border-color: var(--marron); color: var(--crema); }
+.cat.activa { background: var(--acento); border-color: var(--acento); color: #fff; }
 
 .titulo-seccion {
   margin: 10px 4px 0;
-  font-size: 24px;
+  font-size: calc(22px * var(--escala));
   font-weight: 600;
   letter-spacing: 1px;
-  color: var(--marron);
+  color: var(--acento);
 }
 
 /* Lista */
@@ -77,8 +98,8 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--marron);
-  color: var(--crema);
+  background: var(--acento);
+  color: #fff;
   font-size: 17px;
   font-weight: 600;
   display: flex;
@@ -88,7 +109,7 @@ body {
 
 .texto { flex: 1; min-width: 0; }
 .linea-nombre { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.texto h3 { margin: 0; font-size: 19px; font-weight: 600; line-height: 1.25; }
+.texto h3 { margin: 0; font-size: calc(18px * var(--escala)); font-weight: 600; line-height: 1.25; }
 .marca {
   background: var(--rojo);
   color: #fff;
@@ -97,9 +118,9 @@ body {
   padding: 3px 10px;
   border-radius: 999px;
 }
-.descripcion { margin: 3px 0 6px; font-size: 15px; color: var(--gris); line-height: 1.35; }
-.precio { margin: 0; font-size: 22px; font-weight: 600; }
-.agotado .precio { font-size: 17px; font-weight: 400; color: var(--gris); }
+.descripcion { margin: 3px 0 6px; font-size: calc(14px * var(--escala)); color: var(--gris); line-height: 1.35; }
+.precio { margin: 0; font-size: calc(20px * var(--escala)); font-weight: 600; }
+.agotado .precio { font-size: calc(16px * var(--escala)); font-weight: 400; color: var(--gris); }
 
 /* Foto cuadrada */
 .foto {
